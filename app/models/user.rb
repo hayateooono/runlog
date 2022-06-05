@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
          validates :nickname, presence: true
          validates :profile, presence: true
-         validates :time, presence: true
+         validates :hour_time, presence: true
          validates :birth_day,presence: true
 end
