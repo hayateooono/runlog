@@ -1078,16 +1078,16 @@ footer p {
   padding: 0 5px;
 }
 
-.input-name-wrap {
+.input-time-wrap {
   display: flex;
 }
 
-.input-name-wrap p {
+.input-time-wrap p {
   line-height: 80px;
   padding: 0px;
 }
 
-.input-name {
+.input-time {
   width: 80px;
   margin: 10px 10px 20px 10px;
   height: 40px;
