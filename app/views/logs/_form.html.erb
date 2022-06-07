@@ -1,0 +1,28 @@
+<%= form_with(model: @log, local: true) do |form| %>
+      <div class="field">
+        日付
+      </div>
+      <%= form.datetime_field :day,class:"log-day", id:"log-date", placeholder: "日付" %>
+      
+      <div class="field">
+        距離
+      </div>
+      <%= form.number_field :distance, class:"log-day", id:"log-distance",placeholder: "例)10",in: 1..200 %> km
+       
+      <div class="field">
+        タイム
+      </div>
+      <%= form.time_field :time, class:"log-day", id:"log-time", placeholder: "例)30:00",step:"1" %>
+      
+      <div class="field">
+        場所(任意)
+      </div>
+      <%= form.text_field :place, id:"log-place", placeholder: "例)〇〇運動公園" %>
+      
+      <div class="field">
+        内容
+      </div>
+      <%= form.text_area :content, id:"log-content",rows: "10" %>
+    
+      <%= form.submit "Log" %>
+    <% end %>
