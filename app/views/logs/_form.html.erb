@@ -7,7 +7,7 @@
       <div class="field">
         距離
       </div>
-      <%= form.number_field :distance, class:"log-day", id:"log-distance",placeholder: "例)10",in: 1..200 %> km
+      <%= form.number_field :distance, class:"log-day", id:"log-distance",placeholder: "例)10",in: 1..200,step: "0.1" %> km
        
       <div class="field">
         タイム
