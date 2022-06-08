@@ -13,4 +13,6 @@ class User < ApplicationRecord
          validates :sec_time, numericality: { greater_than_or_equal_to: 00, less_than_or_equal_to: 59 ,message:"は半角数字で正しく入力してください"},
          format: { with: /\A[0-9]+\z/}
          validates :birth_day,presence: true
+
+         has_many :logs
 end

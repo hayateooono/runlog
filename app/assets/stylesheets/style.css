@@ -1099,3 +1099,12 @@ footer p {
   font-size: 20px;
   resize: none;
 }
+
+.log-day {
+  width: 200px;
+  margin: 5px 0 15px;
+  padding: 10px;
+  border: 1px solid #D8D8D8;
+  border-radius: 5px;
+  font-family: "游ゴシック", "YuGothic";
+}
