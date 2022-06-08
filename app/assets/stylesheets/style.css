@@ -1108,3 +1108,59 @@ footer p {
   border-radius: 5px;
   font-family: "游ゴシック", "YuGothic";
 }
+
+/* log一覧 */
+.log-contents {
+  background-color: #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10vh 0;
+}
+
+.log-contents>.title {
+  font-size: 5vh;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.log-lists {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.log-lists>.list {
+  width: 50vh;
+  padding: 1vw;
+  background-color: #e6e6e6;
+}
+
+.log-img-content {
+  position: relative;
+}
+
+
+.log-info {
+  background-color: #f0f0f0;
+  color: black;
+  padding: 1vw;
+}
+
+.log-day {
+  font-size: 2vh;
+}
+
+.log-time {
+  font-size: 1.5vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.log_user {
+  display: block;
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+}
