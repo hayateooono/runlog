@@ -5,6 +5,7 @@ class Log < ApplicationRecord
   validates :distance,presence: true,numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 200 }
   validates :time,    presence: true
   validates :place, length: { maximum: 50 }
+  validates :image, presence: true
 
   belongs_to :user
   has_one_attached :image

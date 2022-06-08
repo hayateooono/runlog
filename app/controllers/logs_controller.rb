@@ -1,6 +1,7 @@
 class LogsController < ApplicationController
 
   def index
+    @logs = Log.all
   end
 
   def new
@@ -19,7 +20,7 @@ class LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:content,:day,:distance,:time,:place).merge(user_id: current_user.id)
+    params.require(:log).permit(:content,:day,:distance,:time,:place,:image).merge(user_id: current_user.id)
   end
 
 

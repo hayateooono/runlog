@@ -18,6 +18,11 @@
         場所(任意)
       </div>
       <%= form.text_field :place, id:"log-place", placeholder: "例)〇〇運動公園" %>
+
+      <div class="field">
+        <%= form.label :image, "画像" %><br />
+        <%= form.file_field :image, id:"log-image" %>
+      </div>
       
       <div class="field">
         内容
