@@ -9,7 +9,7 @@
           <%= image_tag @log.image, class: "log-img" %>
         </div>
         <div class='log-info'>
-
+        <% if user_signed_in? && current_user.id == @log.user.id %>
         <input id="checkbox" type="checkbox">
           <label id="menu01" class="menu-trigger" for="checkbox">
             <span></span>
@@ -18,8 +18,9 @@
           </label>
             <div class=menu-box>
               <%= link_to '編集する',root_path %><br>
-              <%= link_to '削除する',root_path, method: :delete %>
+              <%= link_to '削除する',log_path(@log.id), method: :delete %>
             </div>
+            <% end %>
 
             <h3 class='log-day'> 
             <%= @log.day %> 
