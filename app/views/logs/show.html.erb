@@ -1,0 +1,39 @@
+<div class='log-contents'>
+    <h2 class='title'><%= link_to 'log', root_path %></h2>
+    
+    <ul class='log-lists'>
+      
+      
+      <li class='list'>
+        <div class='log-img-content'>
+          <%= image_tag @log.image, class: "log-img" %>
+        </div>
+        <div class='log-info'>
+
+        <input id="checkbox" type="checkbox">
+          <label id="menu01" class="menu-trigger" for="checkbox">
+            <span></span>
+            <span></span>
+           <span></span>
+          </label>
+            <div class=menu-box>
+              <%= link_to '編集する',root_path %><br>
+              <%= link_to '削除する',root_path, method: :delete %>
+            </div>
+
+            <h3 class='log-day'> 
+            <%= @log.day %> 
+            </h3>
+            
+           <div class='log-time'>
+            <span>time:<%= @log.time %>
+            <br>distance:<%= @log.distance %>km
+            <br>place:<%= @log.place %>
+            <br>content:
+            <br><%= @log.content %></span>
+           </div>
+            <%= link_to  @log.user.nickname, "/users/#{@log.user.id}", class: :log_user %>
+        </div>
+      </li>
+    </ul>
+  </div>
