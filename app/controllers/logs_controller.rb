@@ -21,6 +21,19 @@ class LogsController < ApplicationController
     @log = Log.find(params[:id])
   end
 
+  def edit
+    @log = Log.find(params[:id])
+  end
+
+  def update
+    @log = Log.find(params[:id])
+    if @log.update(log_params)
+      redirect_to log_path
+    else
+      render :edit
+    end
+  end
+
   def destroy
     log = Log.find(params[:id])
     if log.destroy
