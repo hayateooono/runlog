@@ -5,7 +5,7 @@
       
       <% @logs.each do |log| %>
       <li class='list'>
-        <%= link_to root_path do %>
+        <%= link_to log_path(log.id) do %>
         <div class='log-img-content'>
           <%= image_tag log.image, class: "log-img" if log.image.attached?%>
         </div>
