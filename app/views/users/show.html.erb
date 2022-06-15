@@ -1,0 +1,38 @@
+<div class="contents row">
+  <p><%= @nickname %>さんの投稿一覧</p>
+  <% @logs.each do |log| %>
+      <p><%= log.image %></p>
+      <span class="name"><%= log.day %></span>
+    </div>
+  <% end %>
+</div>
+
+<div class='log-contents'>
+    <h2 class='title'><%= link_to 'logs', root_path %></h2>
+    
+    
+   <ul class='log-lists'>   
+    <% @logs.each do |log| %>
+    
+      <li class='list'>
+        <%= link_to log_path(log.id) do %>
+        <div class='log-img-content'>
+          <%= image_tag log.image, class: "log-img" if log.image.attached?%>
+        </div>
+        <% end %>
+        <div class='log-info'>
+        
+
+          <%= link_to log_path(log.id) do %>
+          <h3 class='log-day'> 
+            <%= log.day %>
+          </h3>
+          <div class='log-time'>
+            <span>time:<%= log.time %><br>distance:<%= log.distance %>km<br>place:<%= log.place %></span>
+          </div>
+        </div>
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
