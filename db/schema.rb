@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2022_06_06_055441) do
     t.text "content", null: false
     t.date "day", null: false
     t.integer "distance", null: false
-    t.integer "time", null: false
+    t.string "time", null: false
     t.string "place"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false

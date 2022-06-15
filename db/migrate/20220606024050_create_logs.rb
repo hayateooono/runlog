@@ -5,7 +5,7 @@ class CreateLogs < ActiveRecord::Migration[6.0]
       t.text :content,     null: false
       t.date :day,         null: false
       t.integer :distance, null: false
-      t.integer :time,     null: false
+      t.string :time,     null: false
       t.string :place
       t.references :user,  foreign_key: true
       t.timestamps
