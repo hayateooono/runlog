@@ -1,0 +1,20 @@
+<li class='list'>
+  <%= link_to log_path(log.id) do %>
+    <div class='log-img-content'>
+      <%= image_tag log.image, class: "log-img"%>
+    </div>
+  <% end %>
+        
+  <div class='log-info'>
+  <%= link_to log_path(log.id) do %>
+    <h3 class='log-day'> 
+      <%= log.day %>
+    </h3>
+    <div class='log-time'>
+      <span>time:  <%= log.time %>
+      <br>distance:<%= log.distance %>km
+      <br>place:   <%= log.place %></span>
+    </div>
+  <% end %>
+  </div>
+</li>

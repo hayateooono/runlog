@@ -1,0 +1,47 @@
+.contents-prf{
+  width: 1200px;
+  margin: 70px auto 20px;
+}
+.user-prf {
+  display: flex;
+}
+
+.header-img {
+  height: 30vh;
+  background-color: black;
+}
+.user-prflist--left{
+  background-color: white;
+  width: 300px;
+  height: 30vh;
+}
+
+.user-prflist--left-header{
+  background-color: white;
+  height: 100px;
+  padding: 30px;
+}
+
+.user-prflist--left-rooms{
+  background-color: white;
+  height: calc(30vh - 100px);
+  padding: 30px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.user-prflist--center {
+  background-color: rgb(245, 249, 249);
+  width: calc(100% - 300px);
+  padding: 20px;
+}
+
+.prf-name {
+  font-size: 150%;
+  margin-top: 20px;
+  font-weight:bold;
+}
+.prf-info {
+margin-top: 20px;
+word-break: break-all;
+}

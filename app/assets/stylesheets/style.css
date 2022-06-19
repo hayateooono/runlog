@@ -1110,6 +1110,7 @@ footer p {
 }
 
 /* log一覧 */
+
 .log-contents {
   background-color: #e6e6e6;
   display: flex;
@@ -1118,14 +1119,14 @@ footer p {
   padding: 10vh 0;
 }
 
-.log-contents>.title {
+.log-contents-title {
   font-size: 5vh;
   line-height: 1.4;
   font-weight: bold;
 }
 
 .log-lists {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1220,4 +1221,42 @@ footer p {
 }
 #checkbox:checked + label + div {
   display: block;
+}
+
+/*詳細画面CSS*/
+.wrapper-contents{
+  width: 1000px;
+  margin: 70px auto 20px;
+}
+.log-contents-show {
+background-color: #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10vh 0;
+}
+.log-contents-show>.title {
+  font-size: 5vh;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.log-day-show {
+  margin: 5px 0 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "游ゴシック", "YuGothic";
+  font-size: 4vh
+}
+.log-time-show {
+  font-size: 3vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.log_user-show {
+  display: block;
+  font-size: 12px;
+  color: #999;
+  text-align: right;
 }
