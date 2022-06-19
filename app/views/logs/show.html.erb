@@ -1,13 +1,11 @@
-<div class='log-contents'>
+<div class="wrapper-contents">
+  <div class='log-contents-show'>
     <h2 class='title'><%= link_to 'log', root_path %></h2>
     
-    <ul class='log-lists'>
+    
       
-      
-      <li class='list'>
         <div class='log-img-content'>
           <%= image_tag @log.image, class: "log-img" %>
-        </div>
         <div class='log-info'>
         <% if user_signed_in? && current_user.id == @log.user.id %>
         <input id="checkbox" type="checkbox">
@@ -16,17 +14,17 @@
             <span></span>
            <span></span>
           </label>
-            <div class=menu-box>
+            <div class="menu-box">
               <%= link_to '編集する',edit_log_path(@log.id) %><br>
               <%= link_to '削除する',log_path(@log.id), method: :delete %>
             </div>
             <% end %>
 
-            <h3 class='log-day'> 
+            <h3 class='log-day-show'> 
             <%= @log.day %> 
             </h3>
             
-           <div class='log-time'>
+           <div class='log-time-show'>
             <span>time:<%= @log.time %>
             <br>distance:<%= @log.distance %>km
             <br>place:<%= @log.place %>
@@ -35,6 +33,6 @@
            </div>
             <%= link_to  @log.user.nickname, "/users/#{@log.user.id}", class: :log_user %>
         </div>
-      </li>
-    </ul>
+      </div>
   </div>
+</div>

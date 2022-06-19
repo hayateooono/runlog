@@ -1,0 +1,31 @@
+<div class="contents-prf">
+
+<!--div class="header-img">
+<--img src="DSC00286.JPG" alt="image">
+</div-->
+
+<div class="user-prf">
+
+  <div class="user-prflist--left">
+    <div class="user-prflist--left-header">
+      <h2 class='prf-name'><%= @user.nickname %></h2>
+    </div>
+    <div class="user-prflist--left-rooms">
+    <p>PB:<%= @user.hour_time %>時間<%= @user.min_time %>分<%= @user.sec_time %>秒</p>
+    </div>
+  </div>
+
+  <div class="user-prflist--center">
+    <p class="prf-info"><%= @user.profile %></p>
+  </div>
+</div>
+
+ <div class='log-contents'>
+    <h2 class='log-contents-title'>logs</h2>
+
+    <ul class='log-lists'> 
+      <%= render partial: 'logs/log', collection: @logs %>
+    </ul>
+
+ </div>
+</div>

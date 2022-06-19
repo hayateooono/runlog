@@ -1,7 +1,8 @@
 class LogsController < ApplicationController
+  #before_action :authenticate_user!, only:[:new,:edit,:destroy]
 
   def index
-    @logs = Log.all
+    @logs = Log.includes(:user).order("created_at DESC")
   end
 
   def new
