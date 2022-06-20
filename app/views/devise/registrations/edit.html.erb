@@ -1,8 +1,17 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="contents row">
+<div class="container">
+
+<h2 class="prf-edit-title">プロフィール編集</h2>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <div class="field">
+    <%= f.label :nickname %> <em>(50文字以内)</em><br />
+    <%= f.text_field :nickname, autofocus: true, placeholder:"例) ランニング太郎", maxlength: "50",id:"nickname" %>
+  </div>
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -13,31 +22,60 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label :password %> <i></i><br />
+    <%= f.password_field :password, autocomplete: "new-password",placeholder:"変更したくない場合は空白のままにします" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> 文字以上</em>
     <% end %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"パスワード再確認" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.label :current_password %> <i>(変更を確認するには、現在のパスワードが必要です)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password",placeholder:"現在のパスワード" %>
   </div>
 
+  <div class="field">
+        <%= f.label :profile %> <em></em><br />
+        <%= f.text_area :profile, autofocus: true, maxlength: "160",id:"user-profile" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :birth_day %> <em></em><br />
+      </div>
+      <div class='input-birth-wrap'>
+        <%= raw sprintf(
+                  f.date_select(
+                    :birth_day,
+                    class:'select-birth',
+                    id:"birth-date",
+                    use_month_numbers: true,
+                    prompt:'--',
+                    start_year: 1930,
+                    end_year: (Time.now.year - 5),
+                    date_separator: '%s'),
+                  "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :time %>(フルマラソン自己ベスト) <em></em><br />
+      </div>
+      <div class='input-time-wrap'>
+      <%= f.text_field :hour_time, class:"input-time", id:"hour-time", placeholder:"例) 3" %><p>時間</p>
+      <%= f.text_field :min_time, class:"input-time", id:"min-time", placeholder:" 00" %><p>分</p>
+      <%= f.text_field :sec_time, class:"input-time", id:"sec-time", placeholder:" 00" %><p>秒</p>
+      </div>
+
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "変更する" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= button_to "キャンセル", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+</div>
+</div>
