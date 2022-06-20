@@ -8,12 +8,20 @@
 
   <div class="user-prflist--left">
     <div class="user-prflist--left-header">
-      <h2 class='prf-name'><%= @user.nickname %></h2>
+      <h2><%= @user.nickname %></h2>
+    <% if user_signed_in? && current_user.id == @user.id%>
+      <%= link_to '編集',edit_user_registration_path ,class: "userprf-editbtn" %>
+    <% end %>
     </div>
+
+    
+    
     <div class="user-prflist--left-rooms">
     <p>PB:<%= @user.hour_time %>時間<%= @user.min_time %>分<%= @user.sec_time %>秒</p>
     </div>
+
   </div>
+  
 
   <div class="user-prflist--center">
     <p class="prf-info"><%= @user.profile %></p>
