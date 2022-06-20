@@ -31,7 +31,7 @@
             <br>content:
             <br><%= @log.content %></span>
            </div>
-            <%= link_to  @log.user.nickname, "/users/#{@log.user.id}", class: :log_user %>
+            <%= link_to  @log.user.nickname, user_path(@log.user.id), class: :log_user %>
         </div>
       </div>
   </div>

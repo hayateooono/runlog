@@ -15,7 +15,7 @@
           <div class='log-time'>
             <span>time:<%= log.time %><br>distance:<%= log.distance %>km<br>place:<%= log.place %></span>
           </div>
-          <%= link_to  log.user.nickname, "/users/#{log.user.id}", class: :log_user %>
+          <%= link_to  log.user.nickname, user_path(log.user.id), class: :log_user %>
         </div>
         <% end %>
       </li>
