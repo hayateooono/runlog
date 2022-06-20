@@ -4,44 +4,55 @@
 }
 .user-prf {
   display: flex;
+  height: 250px;
 }
 
 .header-img {
   height: 30vh;
   background-color: black;
 }
+
+/*プロフィール左部分*/
 .user-prflist--left{
   background-color: white;
   width: 300px;
-  height: 30vh;
+  height: 100%;
 }
 
 .user-prflist--left-header{
-  background-color: white;
-  height: 100px;
-  padding: 30px;
+  padding: 15px 0 0px 20px;
+  height: 50%;
+}
+.user-prflist--left-header h2 {
+  font-size: 25px;
+  margin: 15px 0 10px 0 ;
+  font-weight:bold;
+}
+.userprf-editbtn{
+  border: 1px solid #000;
+  border-radius: 3px;
+  color: #000;
+  padding: 3px 25px;
+  font-weight: bold;
 }
 
 .user-prflist--left-rooms{
   background-color: white;
-  height: calc(30vh - 100px);
-  padding: 30px;
+  height: 50%;
+  padding: 40px 0 0 20px;
   font-size: 23px;
   font-weight: bold;
 }
 
+/*プロフィール中央*/
 .user-prflist--center {
   background-color: rgb(245, 249, 249);
   width: calc(100% - 300px);
   padding: 20px;
+  height: 100%;
 }
 
-.prf-name {
-  font-size: 150%;
-  margin-top: 20px;
-  font-weight:bold;
-}
 .prf-info {
-margin-top: 20px;
+margin-top: 10px;
 word-break: break-all;
 }
