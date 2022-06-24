@@ -46,7 +46,7 @@ class LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:content,:day,:distance,:time,:place,:image).merge(user_id: current_user.id)
+    params.require(:log).permit(:title,:day,:distance,:hour_time,:min_time,:sec_time,:place,:image,:content).merge(user_id: current_user.id)
   end
 
 
