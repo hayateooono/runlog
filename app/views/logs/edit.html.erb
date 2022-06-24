@@ -5,34 +5,53 @@
     <h3>編集画面</h3>
       <%= form_with(model: @log, local: true) do |form| %>
       <div class="field">
-        日付
+        <p>Title</p> 
       </div>
-      <%= form.datetime_field :day,class:"log-day", id:"log-date", placeholder: "日付" %>
-      
-      <div class="field">
-        距離
-      </div>
-      <%= form.number_field :distance, class:"log-day", id:"log-distance",placeholder: "例)10",in: 1..200,step: "0.1" %> km
-       
-      <div class="field">
-        タイム
-      </div>
-      <%= form.time_field :time, class:"log-day", id:"log-time",step:"1" %>
-      
-      <div class="field">
-        場所(任意)
-      </div>
-      <%= form.text_field :place, id:"log-place", placeholder: "例)〇〇運動公園" %>
+      <%= form.text_field :title,placeholder: "60分jog" %>
 
       <div class="field">
-        <%= form.label :image, "画像" %><br />
-        <%= form.file_field :image, id:"log-image" %>
+        <p>Day</p>
+      </div>
+      <%= form.datetime_field :day,class:"log-day", placeholder: "日付" %>
+      
+    <div class="distance-time-field">
+
+      <div class="distance-field">
+        <div class="field">
+          <p>Distance</p> 例)　10km
+        </div>
+        <div>
+         <%= form.text_field :distance, class:"form-distance",placeholder: "10",in: 1..200,step: "0.1" %>　km
+        </div>
+      </div>
+      
+      <div class="time-field">
+        <div class="field">
+          <p>Time</p>  例)　00:30:00
+        </div>
+        <div>
+         <%= form.text_field :hour_time, class:"form-time",placeholder: "00",in: 00..23 %> ：
+         <%= form.text_field :min_time, class:"form-time",placeholder: "20", in: 00..59 %> ：
+         <%= form.text_field :sec_time, class:"form-time",placeholder: "00",in: 00..59 %>
+        </div>
+      </div>
+
+    </div>
+      
+      <div class="field">
+        <p>Place(任意)</p>
+      </div>
+      <%= form.text_field :place, placeholder: "例)〇〇運動公園" %>
+
+      <div class="field">
+        <p><%= form.label :image, "画像" %></P>
+        <%= form.file_field :image %>
       </div>
       
       <div class="field">
-        内容
+        <p>Content</p>
       </div>
-      <%= form.text_area :content, id:"log-content",rows: "10" %>
+      <%= form.text_area :content,rows: "10" %>
     
       <%= form.submit "Log" %>
     <% end %>
