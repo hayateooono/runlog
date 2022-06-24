@@ -34,11 +34,14 @@ ActiveRecord::Schema.define(version: 2022_06_06_055441) do
   end
 
   create_table "logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "content", null: false
+    t.text "title", null: false
     t.date "day", null: false
     t.integer "distance", null: false
-    t.string "time", null: false
+    t.integer "hour_time", null: false
+    t.integer "min_time", null: false
+    t.integer "sec_time", null: false
     t.string "place"
+    t.text "content", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
