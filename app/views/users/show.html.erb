@@ -4,36 +4,124 @@
 <--img src="DSC00286.JPG" alt="image">
 </div-->
 
-<div class="user-prf">
+ <div class="user-prf">
 
   <div class="user-prflist--left">
-    <div class="user-prflist--left-header">
+   <div class="user-prflist--left-header">
       <h2><%= @user.nickname %></h2>
-    <% if user_signed_in? && current_user.id == @user.id%>
+     <% if user_signed_in? && current_user.id == @user.id%>
       <%= link_to '編集',edit_user_registration_path ,class: "userprf-editbtn" %>
-    <% end %>
+     <% end %>
     </div>
-
-    
-    
     <div class="user-prflist--left-rooms">
-    <p>PB:<%= @user.hour_time %>時間<%= @user.min_time %>分<%= @user.sec_time %>秒</p>
+      <p>PB　<%= format("%02d", @user.hour_time) %>:<%= format("%02d", @user.min_time) %>:<%= format("%02d", @user.sec_time) %></p>
+    </div>
+   </div>
+  
+    <div class="user-prflist--center">
+      <p class="prf-info"><%= @user.profile %></p>
     </div>
 
+</div>
+
+  <!--データ一覧-->
+
+  <div class="total-index">
+
+    <div class="data-total">
+      Total Distance
+      <% @sum = 0 %>
+      <% @logs.each do |log| %>
+        <% log.distance %>
+        <% @sum += log.distance %>
+      <% end %>
+      <h1><%= @sum %></h1><p>km</p>
+    </div>
+
+    <div class="data-total">
+      Total Run
+      <h1><%= @logs.count %></h1><p>ラン</p>
+    </div>
+
+
+    <div class="data-total">
+      Ave Time
+      <% @total_min = 0 %>
+      <% @total_sec = 0 %>
+      <% @logs.each do |log| %>
+        <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+        <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+        <% pace_trun = pace_min.truncate %>
+        <% pace_sec = (pace_trun - pace_min) * 60 %>
+        <% @total_min += pace_min.round %>
+        <% @total_sec += pace_sec.abs.round %> 
+      <% end %> 
+      <% @ave_min = @total_min.round / @logs.count%>
+      <% @ave_sec = @total_sec.round / @logs.count%>
+      <h1><%= format("%02d", @ave_min.round) %>:<%= format("%02d", @ave_sec.abs.round) %></h1><p>/km </p>
+    </div>
   </div>
   
 
-  <div class="user-prflist--center">
-    <p class="prf-info"><%= @user.profile %></p>
+
+  <div class="data-index">
+
+    <div class="data-content">
+      <div class="data-column">Day</div>
+      <% @logs.each do |log| %>
+        <%= link_to log_path(log.id) do %>
+          <p><%= log.day %></p>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="data-content">
+      <div class="data-column">Distance</div>
+      <% @logs.each do |log| %>
+       <p><%= log.distance %>km</p>
+      <% end %>
+    </div>
+
+    <div class="data-content">
+      <div class="data-column">Time</div>
+      <% @logs.each do |log| %>
+        <p><%= format("%02d", log.hour_time) %>:
+        <%= format("%02d", log.min_time) %>:
+        <%= format("%02d", log.sec_time) %></p>
+        <%=  %>
+      <% end %>
+      
+    </div>
+
+    <div class="data-content">    
+      <div class="data-column">Pace</div>
+      <% @logs.each do |log| %>
+        <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+        <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+        <% pace_trun = pace_min.truncate %>
+        <% pace_sec = (pace_trun - pace_min) * 60 %>
+        <p><%= format("%02d", pace_min.round) %>:<%= format("%02d", pace_sec.abs.round) %>/km</p>    
+      <% end %>
+    </div>
+
+    <div class="data-content">
+      <div class="data-column">Place</div>
+        <% @logs.each do |log| %>
+          <% if log.place == "" %>
+            <p>　</p>
+          <% else %>
+           <p><%= log.place %></p>
+          <% end %>
+        <% end %>
+    </div>
+
+
   </div>
-</div>
 
- <div class='log-contents'>
-    <h2 class='log-contents-title'>logs</h2>
 
-    <ul class='log-lists'> 
-      <%= render partial: 'logs/log', collection: @logs %>
-    </ul>
 
- </div>
+  <!--log一覧-->
+
+      <%= render partial: 'logs/log' %>
+
 </div>

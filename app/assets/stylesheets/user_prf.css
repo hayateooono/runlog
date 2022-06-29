@@ -1,5 +1,5 @@
 .contents-prf{
-  width: 1200px;
+  width: 1400px;
   margin: 70px auto 20px;
 }
 .user-prf {
@@ -24,7 +24,7 @@
   height: 50%;
 }
 .user-prflist--left-header h2 {
-  font-size: 25px;
+  font-size: 50px;
   margin: 15px 0 10px 0 ;
   font-weight:bold;
 }
@@ -55,4 +55,44 @@
 .prf-info {
 margin-top: 10px;
 word-break: break-all;
+}
+
+/*data-total*/
+
+.total-index {
+  display: flex;
+  justify-content: center;
+}
+
+.data-total{
+  margin: 0 100px 0 0 ;
+}
+
+.data-total h1{
+  font-size: 70px;
+  font-weight: bold;
+}
+.data-total p{
+  font-size: 15px;
+  text-align: end;
+}
+
+/*data-index*/
+
+.data-index {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 ;
+}
+.data-content {
+  margin: 0 50px;
+}
+.data-column{
+  font-size: 40px;
+  font-weight: bold;
+}
+.data-content p {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: solid;
 }
