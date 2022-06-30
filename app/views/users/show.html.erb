@@ -115,8 +115,14 @@
         <% end %>
     </div>
 
-
   </div>
+
+  <div class="graph">
+  <%= column_chart Log.group(:day).sum(:distance),
+  ytitle: "km"
+   %>
+   </div>
+  
 
 
 

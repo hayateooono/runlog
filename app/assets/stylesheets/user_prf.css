@@ -65,7 +65,8 @@ word-break: break-all;
 }
 
 .data-total{
-  margin: 0 100px 0 0 ;
+  margin: 0 100px ;
+  padding-top: 10px;
 }
 
 .data-total h1{
@@ -75,6 +76,10 @@ word-break: break-all;
 .data-total p{
   font-size: 15px;
   text-align: end;
+}
+
+.graph{
+  padding: 30px;
 }
 
 /*data-index*/
