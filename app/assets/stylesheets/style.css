@@ -1009,6 +1009,8 @@ form input[type="submit"]:hover {
   box-shadow: 0 0 10px rgba(41, 41, 41, 0.2);
   background-color: white;
   box-sizing: border-box;
+  width: 100%;
+  box-shadow: 2px 2px 2px 2px rgba(175, 175, 175, 0.6);
 }
 
 .container h3 {
@@ -1021,7 +1023,8 @@ form input[type="submit"]:hover {
 
 .comments {
   padding: 5px;
-  margin-top: 15px;
+  margin-bottom: 50px;
+  font-size: 20px;
 }
 
 .comments a {
@@ -1032,6 +1035,11 @@ form input[type="submit"]:hover {
   text-decoration: underline;
 }
 
+.comments h4 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 footer {
   margin: 30px auto;
   padding: 10px;
@@ -1265,7 +1273,6 @@ footer p {
 .log-show {
   width: 100vh;
   padding: 1vw;
-  margin: 10px;
   background-color: white;
   box-shadow: 2px 2px 2px 2px rgba(175, 175, 175, 0.6);
 }
