@@ -1,8 +1,9 @@
 class LogsController < ApplicationController
-  #before_action :authenticate_user!, only:[:new,:edit,:destroy]
+  before_action :authenticate_user!, only:[:new,:edit,:destroy]
+  before_action :move_to_index, only: [:edit]
 
   def index
-    @logs = Log.includes(:user).order("created_at DESC")
+    @logs = Log.includes(:user).order("day DESC")
   end
 
   def new
@@ -47,6 +48,13 @@ class LogsController < ApplicationController
 
   def log_params
     params.require(:log).permit(:title,:day,:distance,:hour_time,:min_time,:sec_time,:place,:image,:content).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    @log = Log.find(params[:id])
+    unless current_user.id == @log.user.id
+      redirect_to action: :index
+    end
   end
 
 
