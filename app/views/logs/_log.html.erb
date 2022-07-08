@@ -26,7 +26,7 @@
              place
             </div>
           <div class="log-category-data">
-            <%= log.hour_time %>時間<%= log.min_time %>分<%= log.sec_time %>秒<br>
+            <%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %><br>
             <%= log.distance %>km<br>
             <%= log.place %>
           </div>

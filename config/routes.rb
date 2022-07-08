@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   }
   
   root to: "logs#index"
-  resources :logs, only: [:new,:create,:show,:destroy,:edit,:update]
+  resources :logs, only: [:new,:create,:show,:destroy,:edit,:update] do
+    resources :comments, only: :create
+  end
   resources :users, only: [:show,:edit,:destroy]
 end
