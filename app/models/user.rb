@@ -15,4 +15,5 @@ class User < ApplicationRecord
          validates :birth_day,presence: true
 
          has_many :logs
+         has_many :comments
 end
