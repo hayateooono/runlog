@@ -52,10 +52,10 @@
       <div class="field">
         <%= f.label :time %>(フルマラソン自己ベスト) <em></em><br />
       </div>
-      <div class='input-time-wrap'>
-      <%= f.text_field :hour_time, class:"input-time", id:"hour-time", placeholder:"例) 3" %><p>時間</p>
-      <%= f.text_field :min_time, class:"input-time", id:"min-time", placeholder:" 00" %><p>分</p>
-      <%= f.text_field :sec_time, class:"input-time", id:"sec-time", placeholder:" 00" %><p>秒</p>
+      <div class='time-field'>
+      <%= f.text_field :hour_time, class:"form-time", placeholder:"3" %>：
+      <%= f.text_field :min_time, class:"form-time", placeholder:" 00" %>：
+      <%= f.text_field :sec_time, class:"form-time", placeholder:" 00" %>
       </div>
 
       <div class="actions">

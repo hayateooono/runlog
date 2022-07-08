@@ -1,37 +1,53 @@
-<div class="wrapper-contents">
+<div class="log-contents">
   <div class='log-contents-show'>
     <h2 class='title'><%= link_to 'log', root_path %></h2>
-    
-    
-      
+
+
+      <div class="log-show">
         <div class='log-img-content'>
           <%= image_tag @log.image, class: "log-img" %>
-        <div class='log-info'>
-        <% if user_signed_in? && current_user.id == @log.user.id %>
-        <input id="checkbox" type="checkbox">
-          <label id="menu01" class="menu-trigger" for="checkbox">
-            <span></span>
-            <span></span>
-           <span></span>
-          </label>
+        </div>
+
+        <div class="log-header">
+          <div class='log-info'>
+            <% if user_signed_in? && current_user.id == @log.user.id %>
+              <input id="checkbox" type="checkbox">
+              <label id="menu01" class="menu-trigger" for="checkbox">
+               <span></span>
+               <span></span>
+               <span></span>
+             </label>
             <div class="menu-box">
               <%= link_to '編集する',edit_log_path(@log.id) %><br>
               <%= link_to '削除する',log_path(@log.id), method: :delete %>
             </div>
             <% end %>
+          </div>
 
-            <h3 class='log-day-show'> 
-            <%= @log.day %> 
-            </h3>
+          <div class="log-user-link">
+            <%= link_to  @log.user.nickname, user_path(@log.user.id) %>
+          </div>
+
+          <%= @log.day %>
+          <p><%= @log.title %></p>
+        </div>
             
-           <div class='log-time-show'>
-            <span>time:<%= @log.time %>
-            <br>distance:<%= @log.distance %>km
-            <br>place:<%= @log.place %>
-            <br>content:
-            <br><%= @log.content %></span>
-           </div>
-            <%= link_to  @log.user.nickname, user_path(@log.user.id), class: :log_user %>
+        <div class='log-category'>
+          <div class="log-category-title">
+             time<br>
+             distance<br>
+             place<br>
+          </div>
+          <div class="log-category-data">
+            <%= @log.hour_time %>時間<%= @log.min_time %>分<%= @log.sec_time %>秒<br>
+            <%= @log.distance %>km<br>
+            <%= @log.place %><br>
+          </div>
+        </div>
+
+        <div class="log-content">
+          <p>content</P>
+          <%= @log.content%>
         </div>
       </div>
   </div>

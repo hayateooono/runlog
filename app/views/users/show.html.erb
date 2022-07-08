@@ -1,39 +1,83 @@
 <div class="contents-prf">
 
-<!--div class="header-img">
-<--img src="DSC00286.JPG" alt="image">
-</div-->
-
-<div class="user-prf">
-
-  <div class="user-prflist--left">
-    <div class="user-prflist--left-header">
-      <h2><%= @user.nickname %></h2>
-    <% if user_signed_in? && current_user.id == @user.id%>
-      <%= link_to '編集',edit_user_registration_path ,class: "userprf-editbtn" %>
-    <% end %>
-    </div>
-
-    
-    
-    <div class="user-prflist--left-rooms">
-    <p>PB:<%= @user.hour_time %>時間<%= @user.min_time %>分<%= @user.sec_time %>秒</p>
-    </div>
-
-  </div>
-  
-
-  <div class="user-prflist--center">
-    <p class="prf-info"><%= @user.profile %></p>
-  </div>
+<div class="header-img">
+<img src="/assets/running_header.jpg" alt="image" width="100%">
 </div>
 
- <div class='log-contents'>
-    <h2 class='log-contents-title'>logs</h2>
+<!--プロフ欄-->
 
-    <ul class='log-lists'> 
-      <%= render partial: 'logs/log', collection: @logs %>
-    </ul>
+  <div class="user-prf">
 
- </div>
+    <div class="user-prflist--left">
+      <div class="user-prflist--left-header">
+        <h2><%= @user.nickname %></h2>
+        <% if user_signed_in? && current_user.id == @user.id%>
+          <%= link_to '編集',edit_user_registration_path ,class: "userprf-editbtn" %>
+        <% end %>
+     </div>
+      <div class="user-prflist--left-rooms">
+        <p>PB　<%= format("%02d", @user.hour_time) %>:<%= format("%02d", @user.min_time) %>:<%= format("%02d", @user.sec_time) %></p>
+      </div>
+    </div>
+    
+    <div class="user-prflist--center">
+      <p class="prf-info"><%= @user.profile %></p>
+    </div>
+
+  </div>
+
+  <!--データ一覧-->
+  
+  <% if @logs.present? %>
+  <div class="total-index">
+
+    <div class="data-total">
+      Total Distance
+      <h1><%= @logs.sum(:distance) %></h1><p>km</p>
+    </div>
+
+    <div class="data-total">
+      Total Run
+      <h1><%= @logs.count %></h1><p>ラン</p>
+    </div>
+
+    <div class="data-total">
+      Ave Time
+      <% @total_sec = 0 %>
+      <% @logs.each do |log| %>
+        <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+        <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+        <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+        <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+      <% end %> 
+      <% t = @total_sec / @logs.count%>
+      <% @total_ave_min =  t.to_f / 60 %>
+      <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+      <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+    </div>
+
+    
+
+  </div>
+
+
+
+  <!--グラフ-->
+  <div class="graph">
+      <% @month_requests_count = @logs.group("YEAR(day)").group("MONTH(day)").sum(:distance)%>
+      <%= column_chart @month_requests_count,
+      ytitle: "km",
+      xtitle: "月",
+      suffix: "km",
+      height: "500px"
+      %>
+  </div>
+  
+  <!--タブ一覧-->
+  <%= render partial: 'data_index' %>
+
+  <!--log一覧-->
+
+  <%= render partial: 'logs/log' %>
+  <% end %>
 </div>

@@ -1,0 +1,840 @@
+  <div class="wrapper">
+    <ul class="tab">
+      <li><a href="#2022-1">2022-1</a></li>
+      <li><a href="#2022-2">2022-2</a></li>
+      <li><a href="#2022-3">2022-3</a></li>
+      <li><a href="#2022-4">2022-4</a></li>
+      <li><a href="#2022-5">2022-5</a></li>
+      <li><a href="#2022-6">2022-6</a></li>
+      <li><a href="#2022-7">2022-7</a></li>
+      <li><a href="#2022-8">2022-8</a></li>
+      <li><a href="#2022-9">2022-9</a></li>
+      <li><a href="#2022-10">2022-10</a></li>
+      <li><a href="#2022-11">2022-11</a></li>
+      <li><a href="#2022-12">2022-12</a></li>
+    </ul>
+
+      <div id="2022-1" class="area">
+        <h2>1月</h2>
+        <ul> 
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 1')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0%>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+            <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+            </div>
+        </ul>
+      </div>
+
+      <div id="2022-2" class="area">
+        <h2>2月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 2')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+           <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0%>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+            <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+            </div>
+        </ul>
+      </div>
+
+      <div id="2022-3" class="area">
+        <h2>3月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 3')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+            <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+              </div>
+        </ul>
+      </div>
+
+      <div id="2022-4" class="area">
+        <h2>4月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 4')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+          <div class="total-index">
+            <div class="data-total">
+              Total Distance
+                <h1><%= @sum %></h1><p>km</p>
+            </div>
+
+            <div class="data-total">
+              Total Run
+                <h1><%= data.count %></h1>
+            </div>
+
+            <div class="data-total">
+              Ave Time
+              <% @total_sec = 0 %>
+              <% data.each do |log| %>
+                <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+              <% end %> 
+              <% t = @total_sec / data.count rescue 0 %>
+              <% @total_ave_min =  t.to_f / 60 %>
+              <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+              <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+            </div>
+          </div>
+
+            <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+            </div>
+        </ul>
+      </div>
+
+      <div id="2022-5" class="area">
+        <h2>5月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 5')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+            <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+            </div>
+        </ul>
+      </div>
+
+      <div id="2022-6" class="area">
+        <h2>6月</h2>
+        <ul> 
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                <% @sum = 0 %>
+                <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 6')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+           </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+        
+              <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+              </div>
+        </ul>
+      </div>
+
+      <div id="2022-7" class="area">
+        <h2>7月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 7')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                       <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+              <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+              </div>
+        </ul>
+      </div>
+
+      <div id="2022-8" class="area">
+        <h2>8月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 8')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+              <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+              </div>
+        </ul>
+      </div>
+
+      <div id="2022-9" class="area">
+        <h2>9月</h2>
+        <ul> 
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 9')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+              <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+              </div>
+        </ul>
+      </div>
+
+      <div id="2022-10" class="area">
+        <h2>10月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 10')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+            <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+            </div>
+        </ul>
+      </div>
+
+      <div id="2022-11" class="area">
+        <h2>11月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 11')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+            <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+            </div>
+        </ul>
+      </div>
+
+      <div id="2022-12" class="area">
+        <h2>12月</h2>
+        <ul>
+            <div class="data-index">
+              <div class="data-content">
+                <div class="data-column">
+                 <% @sum = 0 %>
+                 <% data = @logs.where('extract(year from day) = 2022 AND extract(month from day) = 12')%>
+                  <% data.each do |log| %>
+                    <%= link_to log_path(log.id) do %>
+                      <p><span><%= log.day %></span>
+                      <span><%= format("%02d",log.distance) %>km</span>
+                      <span><%= format("%02d",log.hour_time) %>:<%= format("%02d",log.min_time) %>:<%= format("%02d",log.sec_time) %></span>
+            
+                      <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                      <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                      <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                      <span><%= format("%02d", pace_min.floor) %>:<%= format("%02d", pace_sec.abs.round) %>/km</span>
+                      <% if log.place == "" %>
+                        <span>　</span>
+                      <% else %>
+                        <span><%= log.place %></span></P>
+                      <% end %>
+                      <% @sum += log.distance %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-index">
+              <div class="data-total">
+                Total Distance
+                  <h1><%= @sum %></h1><p>km</p>
+              </div>
+
+              <div class="data-total">
+                Total Run
+                  <h1><%= data.count %></h1>
+              </div>
+
+              <div class="data-total">
+                Ave Time
+                <% @total_sec = 0 %>
+                <% data.each do |log| %>
+                  <% sec_conversion = log.hour_time * 3600 + log.min_time * 60 + log.sec_time %>
+                  <% pace_min = sec_conversion.to_f / log.distance / 60  %>
+                  <% pace_sec = (pace_min.truncate - pace_min) * 60 %>
+                  <% @total_sec += (pace_min.floor * 60) + pace_sec.abs.round%>
+                <% end %> 
+                <% t = @total_sec / data.count rescue 0 %>
+                <% @total_ave_min =  t.to_f / 60 %>
+                <% @total_ave_sec = (@total_ave_min.truncate - @total_ave_min) * 60 %>
+                <h1><%= format("%02d", @total_ave_min.floor) %>:<%= format("%02d", @total_ave_sec.abs.round) %></h1><p>/km </p>
+              </div>
+            </div>
+
+            <div class="graph">
+                <%= column_chart data.group(:day).sum(:distance),
+                  ytitle: "km",
+                  height: "600px"
+                 %>
+            </div>
+        </ul>
+      </div>
+  </div>
+
+  <script>
+  function GethashID (hashIDName){
+    if(hashIDName){
+      $('.tab li').find('a').each(function() {
+        var idName = $(this).attr('href');
+        if(idName == hashIDName){ 
+          var parentElm = $(this).parent();
+          $('.tab li').removeClass("active");
+          $(parentElm).addClass("active");
+          $(".area").removeClass("is-active");
+          $(hashIDName).addClass("is-active"); 
+        }
+      });
+    }
+  }
+
+  $('.tab a').on('click', function() {
+    var idName = $(this).attr('href');
+    GethashID (idName);
+    return false;
+  });
+
+  $(window).on('load', function () {
+      $('.tab li:first-of-type').addClass("active");
+      $('.area:first-of-type').addClass("is-active");
+    var hashName = location.hash;
+    GethashID (hashName);
+  });
+</script>
+
+
