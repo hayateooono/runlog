@@ -36,26 +36,26 @@ https://runlog.herokuapp.com/
 [要件定義書](https://docs.google.com/spreadsheets/d/1k2exXUu1cAK9fVoHnMEpZ8oiJAPsyN3L83bhWjPSpH8/edit#gid=1142634503)
 
 # 実装した機能についての画像やGIF及びその説明
-* トップページに投稿データが一覧される
+* ### トップページに投稿データが一覧される
 [![Image from Gyazo](https://i.gyazo.com/9f9203cf39a28e5b6993d5205869d9b6.gif)](https://gyazo.com/9f9203cf39a28e5b6993d5205869d9b6)
 
-* 投稿をクリックすると詳細ページに遷移される
+* ### 投稿をクリックすると詳細ページに遷移される
 [![Image from Gyazo](https://i.gyazo.com/6be82122566cd4420ad106615a737e8b.gif)](https://gyazo.com/6be82122566cd4420ad106615a737e8b)
 
-* 投稿にはコメントができる
+* ### 投稿にはコメントができる
 [![Image from Gyazo](https://i.gyazo.com/2a49094db508b8593a933eccaab2f3a1.gif)](https://gyazo.com/2a49094db508b8593a933eccaab2f3a1)
 
-* マイページには投稿内容のデータ(総走行距離、総ランニング回数、平均ペース)と月別の走行距離がグラフで表示される
+* ### マイページには投稿内容のデータ(総走行距離、総ランニング回数、平均ペース)と月別の走行距離がグラフで表示される
 [![Image from Gyazo](https://i.gyazo.com/cbb1f3d44ed21d1b41c1edfc4e41580b.gif)](https://gyazo.com/cbb1f3d44ed21d1b41c1edfc4e41580b)
 
-* 月別にデータをタブで表示
+* ### 月別にデータをタブで表示
 [![Image from Gyazo](https://i.gyazo.com/a5ce3b687c82a6e697e50378a876a25b.gif)](https://gyazo.com/a5ce3b687c82a6e697e50378a876a25b)
 
-* 各月ごとのデータが表示される
+* ### 各月ごとのデータが表示される
 [![Image from Gyazo](https://i.gyazo.com/a7b1450d7c5061fbb74b6db1737a2cb3.gif)](https://gyazo.com/a7b1450d7c5061fbb74b6db1737a2cb3)
-* マイページ下部に自身の投稿が一覧表示される
+* ### マイページ下部に自身の投稿が一覧表示される
 [![Image from Gyazo](https://i.gyazo.com/252c3a1267ed5dce09dd29ea4563602e.gif)](https://gyazo.com/252c3a1267ed5dce09dd29ea4563602e)
-* 投稿ボタンを押すと投稿画面ヘ遷移する
+* ### 投稿ボタンを押すと投稿画面ヘ遷移する
 [![Image from Gyazo](https://i.gyazo.com/8f99552118094d1f5bd27141941699d0.gif)](https://gyazo.com/8f99552118094d1f5bd27141941699d0)
 
 # 実装予定の機能
@@ -84,21 +84,21 @@ https://runlog.herokuapp.com/
 % yarn install
 
 # 工夫したポイント
-* **データを月別に表示した**<br>
+* ## **データを月別に表示した**<br>
 ただデータを羅列させるのではなく、月別に管理、表示させた。
 なぜなら羅列しただけでは、データがごちゃつき、検索が難しくなるから。
 具体的には、タブを用意し容易にデータの閲覧ができるようにした。<br>
 大変だった点は、月ごとにデータを取得し表示すること。
 if文で条件分岐すればいいのか、group文で絞り込むのか等トライ＆エラーを繰り返しwhere文でデータの取得をすることで解決できた。
 
-* **グラフを導入し、視認性を上げた**<br>
+* ## **グラフを導入し、視認性を上げた**<br>
 chartkickを使い、グラフを表示した。<br>
 なぜなら、数値だけでは分かりにくく見づらいから導入した。
 グラフを導入することで、視覚からイメージしやすいように工夫した。<br>
 大変だった点はカリキュラムで習わなかった分野のため知識がなかったこと。
 自分で方法を調べ、表示に成功した。
 
-* **平均ペースの取得**<br>
+* ## **平均ペースの取得**<br>
 より細かなデータ分析をするために走った時間と距離から平均ペースを算出し表示した。<br>
 大変だった点は、時間計算をコードで表示すること。
 タイムを時間、分、秒に分けて計算し表示させる点に苦労した。
