@@ -72,10 +72,15 @@ https://runlog.herokuapp.com/
 
 # 開発環境
 * フロントエンド
+  HTML,CSS,JavaScript
 * バックエンド
+  Ruby,Ruby on Rails
 * インフラ
+  MySQL
 * テキストエディタ
+  VScode
 * タスク管理
+  GitHub
 
 # ローカルでの動作方法
 % git clone http://github.com/runlog<br>
