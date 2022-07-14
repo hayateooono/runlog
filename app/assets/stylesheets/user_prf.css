@@ -7,10 +7,6 @@
   height: 250px;
 }
 
-.header-img {
-  background-size: cover;
-}
-
 /*プロフィール左部分*/
 .user-prflist--left{
   background-color: white;
